@@ -30,7 +30,13 @@ public class Tax {
 			System.out.println("Browser: " + ANSI_PURPLE + browser + ANSI_RESET);
 			for (String n : order) {
 
-				Common.open("Edge", "http://alex.academy/exe/payment_tax/index" + n + ".html");
+				try {
+				Common.open(browser, "http://alex.academy/exe/payment_tax/index" + n + ".html");
+				}
+				catch (IllegalArgumentException e) {
+					System.out.println(ANSI_RED + "Browser dosn't exist for this OS" + ANSI_RESET);
+					break;
+				}
 				
 				String input = Common.getValue(By.id("id_monthly_payment_and_tax"));
 				System.out.println("String:                  " + input);
