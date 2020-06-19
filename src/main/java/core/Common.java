@@ -16,6 +16,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+
 public class Common {
 	
 	static WebDriver driver;
@@ -127,6 +130,23 @@ public class Common {
 	
 	public static void quit() {
 		driver.quit();
+	}
+	
+	public static boolean isElementPresent(HtmlPage page, String by) {
+		return page.getElementsById(by).size() == 1;
+	}
+
+	public static void setValue(HtmlPage page, String by, String value) {
+		if (isElementPresent(page, by) && page.getElementById(by).isDisplayed()) {
+			HtmlInput intputBox = (HtmlInput) page.getHtmlElementById(by);
+			intputBox.setValueAttribute(value);
+		}
+	}
+
+	public static String getValue(HtmlPage page, String by) {
+		return isElementPresent(page, by) && page.getElementById(by).isDisplayed()
+				? page.getElementById(by).getTextContent()
+				: "null";
 	}
 
 }
