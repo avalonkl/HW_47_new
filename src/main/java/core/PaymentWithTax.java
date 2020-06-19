@@ -77,7 +77,9 @@ public class PaymentWithTax {
 					try {
 						Common.open(browser, "http://alex.academy/exe/payment_tax/index" + n + ".html");
 					} catch (IllegalArgumentException e) {
-						System.out.println(ANSI_RED + "Browser dosn't exist for this OS" + ANSI_RESET);
+						System.out.println(ANSI_RED + "Browser " + ANSI_CYAN + browser + ANSI_RED
+								+ " dosn't exist for OS " + ANSI_CYAN + Common.getOS().substring(0, 1)
+								+ Common.getOS().substring(1).toLowerCase() + "." + ANSI_RESET);
 						break;
 					}
 
